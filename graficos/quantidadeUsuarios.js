@@ -1,4 +1,4 @@
-import { getCSS, tickConfig } from "./common.js"
+import { getCSS, tickConfig, criarGrafico } from "./common.js"
 
 async function quantidadeUsuariosPorRede() {
     const url = 'https://raw.githubusercontent.com/IzaacCoding36/api/main/numero-usuarios.json'
@@ -13,27 +13,27 @@ async function quantidadeUsuariosPorRede() {
             y: quantidadeDeUsuarios, 
             type: 'bar',
             marker: {
-                color: getCSS('--primary-color')
+                color: getCSS('--extra-color-2')
             }
         }
     ]
 
-    const laytout = {
+    const layout = {
         plot_bgcolor: getCSS('--bg-color'),
         paper_bgcolor: getCSS('--bg-color'),
         title: {
-            text: 'Redes sociais com mais usuários',
+            text: 'Redes sociais com mais usuários no mundo',
             x: 0,
             font: {
                 color: getCSS('--primary-color'),
-                size: 30,
-                font: getCSS('--font')
+                family: getCSS('--font'),
+                size: 30
             }
         },
         xaxis: {
             tickfont: tickConfig,
             title: {
-                text: 'Nome das redes',
+                text: 'nome das redes sociais',
                 font: {
                     color: getCSS('--secondary-color')
                 }
@@ -42,18 +42,16 @@ async function quantidadeUsuariosPorRede() {
         yaxis: {
             tickfont: tickConfig,
             title: {
-                text: 'Bilhões de usuários ativos',
+                text: 'bilhões de usuários ativos',
                 font: {
                     color: getCSS('--secondary-color')
                 }
             }
         }
+
     }
 
-    const grafico = document.createElement('div')
-    grafico.className = 'grafico'
-    document.getElementById('graficos-container').appendChild(grafico)
-    Plotly.newPlot(grafico, data, laytout)
+    criarGrafico(data, layout)
 }
 
 quantidadeUsuariosPorRede()
