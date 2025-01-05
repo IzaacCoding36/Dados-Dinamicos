@@ -8,6 +8,8 @@
     --extra-color-2: #1c6391;
     --font: "Nunito Sans", sans-serif;}
 
+html {background-color: var(--bg-color);}
+
 body {background-color: var(--bg-color);
       color: var(--primary-color);
       font-family: var(--font);
