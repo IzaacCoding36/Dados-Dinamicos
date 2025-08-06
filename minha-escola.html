@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="IzaacCoding36">
-    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <meta name="description" content="Esse site apresenta um jogo de adivinhar o número secreto utilizando JavaScript.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, Projeto, Jogo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Relatório de redes sociais da minha escola apresentando dados locais sobre preferências e uso de plataformas sociais.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Redes Sociais, Dados, Gráficos, API, Dashboard">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/jpg" href="favicon/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
@@ -16,26 +16,29 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-    <title>Redes Sociais - Minha Escola</title>
-    <base href="index.html">
+    <title>Relatório de Redes Sociais - Minha Escola</title>
 </head>
 <body>
-  <header>
-    <h1>Relatório das redes sociais</h1>
-    <hr>
-    <nav>
-      <a href="index.html">Mundo</a>
-      <a href="minha-escola.html">Minha escola</a>
-    </nav>
-  </header>
-    <main class="graficos-section">
-      <section id="graficos-container" class="graficos-container">
-      </section>
+    <header>
+        <h1>Relatório das redes sociais</h1>
+        <hr>
+        <nav role="navigation" aria-label="Navegação principal">
+            <a href="index.html" aria-label="Dados globais das redes sociais">Mundo</a>
+            <a href="minha-escola.html" aria-current="page" aria-label="Dados da minha escola">Minha escola</a>
+        </nav>
+    </header>
+    
+    <main role="main">
+        <section id="graficos-container" class="graficos-container" aria-label="Gráficos e dados sobre redes sociais da escola">
+            <!-- Os gráficos serão inseridos aqui dinamicamente -->
+        </section>
     </main>
-  <footer>
-    <p>Desenvolvido por <a href="https://github.com/IzaacCoding36">IzaacCoding36</a></p>
-  </footer>
-  <script type="module" src="graficos/common.js"></script>
-  <script type="module" src="graficos/redesSociaisMinhaEscola.js"></script>
+    
+    <footer role="contentinfo">
+        <p>Desenvolvido por <a href="https://github.com/IzaacCoding36" target="_blank" rel="noopener noreferrer" aria-label="Perfil do desenvolvedor no GitHub">IzaacCoding36</a></p>
+    </footer>
+    
+    <script type="module" src="graficos/common.js"></script>
+    <script type="module" src="graficos/redesSociaisMinhaEscola.js"></script>
 </body>
 </html>

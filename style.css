@@ -6,71 +6,291 @@
     --secondary-color: #63f054;
     --extra-color: #090e18;
     --extra-color-2: #1c6391;
-    --font: "Nunito Sans", sans-serif;}
+    --font: "Nunito Sans", sans-serif;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 15px rgba(99, 240, 84, 0.3);
+}
 
-html {background-color: var(--bg-color);}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-body {background-color: var(--bg-color);
-      color: var(--primary-color);
-      font-family: var(--font);
-      height: 100vh;
-      margin: 0;}
+html {
+    background-color: var(--bg-color);
+    scroll-behavior: smooth;
+}
 
-header {background-color: var(--extra-color);
-        text-align: center;
-        padding: 1px;}
-
-h1 {font-size: 2rem;
+body {
+    background-color: var(--bg-color);
     color: var(--primary-color);
-    text-shadow: 0px 0px 5px var(--primary-color);
-    font-weight: 700;}
+    font-family: var(--font);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-hr {border: outset 2px var(--secondary-color);
-    box-shadow: 0px 0px 15px lime;}
+header {
+    background: linear-gradient(135deg, var(--extra-color) 0%, rgba(9, 14, 24, 0.9) 100%);
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
 
-nav {display: flex;
-     justify-content: center;
-     font-weight: 400;}
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.8s ease-out;
+}
 
-nav a {text-decoration: none;
-       color: var(--primary-color);
-       margin: 0 2rem 1rem 0rem;
-       transform: scale(1);
-       transition: text-shadow 3s, color 1s;
-       text-shadow: 0px 0px 0px white;
-       font-size: 1.2rem;}
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-nav a:hover {text-decoration: underline;
-             text-shadow: 0px 0px 10px lime;
-             color: var(--secondary-color);
-             transition: text-shadow 3s, color 1s;}
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+    box-shadow: var(--shadow-glow);
+    margin: 1rem 0;
+    animation: pulse 2s infinite;
+}
 
-.graficos-container {margin: 5rem;}
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
 
-.grafico {margin-top: 3rem;}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-weight: 400;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
 
-.graficos-container__texto {font-size: 1.3rem;
-                            text-align: center;
-                            background: var(--extra-color);
-                            padding: 2rem;
-                            box-shadow: 0px 0px 15px lime;
-                            border: var(--secondary-color) outset 2px;}
+nav a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
 
-span {font-weight: bold;
-      text-shadow: 0px 0px 15px lime;
-      color: var(--secondary-color);}
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(99, 240, 84, 0.2), transparent);
+    transition: var(--transition);
+}
 
-footer {display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--extra-color);
-        box-shadow: 0px 0px 5px lime;
-        border-top: outset 2px var(--secondary-color);
-        color: var(--primary-color);
-        width: 100%;
-        height: 3rem;
-        margin-top: 2rem;}
+nav a:hover::before {
+    left: 100%;
+}
 
-footer a {color: var(--secondary-color); transition: color 1s, text-shadow 1s;}
+nav a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px var(--secondary-color);
+    color: var(--secondary-color);
+    background: rgba(99, 240, 84, 0.1);
+    transform: translateY(-2px);
+}
 
-footer a:hover {color: lime; text-shadow: 0px 0px 5px lime; transition: color 1s, text-shadow 1s;}
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+}
+
+.graficos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.grafico {
+    margin: 3rem 0;
+    padding: 1rem;
+    background: rgba(9, 14, 24, 0.3);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(99, 240, 84, 0.1);
+}
+
+.grafico:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-color: rgba(99, 240, 84, 0.3);
+}
+
+.graficos-container__texto {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    text-align: center;
+    background: linear-gradient(135deg, var(--extra-color) 0%, rgba(28, 99, 145, 0.1) 100%);
+    padding: 2rem;
+    margin: 3rem 0;
+    box-shadow: var(--shadow-glow);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.graficos-container__texto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(99, 240, 84, 0.4);
+}
+
+span {
+    font-weight: bold;
+    text-shadow: 0 0 15px var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0 2px;
+}
+
+footer {
+    background: linear-gradient(135deg, var(--extra-color) 0%, rgba(9, 14, 24, 0.9) 100%);
+    box-shadow: 0 -2px 10px rgba(99, 240, 84, 0.2);
+    border-top: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+footer a:hover {
+    color: #7fff57;
+    text-shadow: 0 0 5px #7fff57;
+    text-decoration: underline;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(99, 240, 84, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--secondary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .graficos-container {
+        margin: 2rem 0.5rem;
+        padding: 0;
+    }
+    
+    nav {
+        gap: 1rem;
+    }
+    
+    nav a {
+        font-size: 1.1rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .graficos-container__texto {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .grafico {
+        margin: 2rem 0;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    main {
+        padding: 1rem 0.5rem;
+    }
+    
+    .graficos-container__texto {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #FFFFFF;
+        --secondary-color: #00FF00;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
