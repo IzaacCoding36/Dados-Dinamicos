@@ -103,6 +103,13 @@ nav a {
     overflow: hidden;
 }
 
+nav a[aria-current="page"] {
+    background: rgba(99, 240, 84, 0.2);
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--secondary-color);
+}
+
 nav a::before {
     content: '';
     position: absolute;
@@ -124,6 +131,11 @@ nav a:hover {
     color: var(--secondary-color);
     background: rgba(99, 240, 84, 0.1);
     transform: translateY(-2px);
+}
+
+nav a:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 main {
@@ -228,8 +240,43 @@ footer a:hover {
     animation: spin 1s ease-in-out infinite;
 }
 
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    color: var(--primary-color);
+    background: rgba(9, 14, 24, 0.3);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(99, 240, 84, 0.2);
+    margin: 2rem 0;
+}
+
+.erro-container {
+    margin: 2rem 0;
+}
+
+.erro-container p {
+    color: #ff6b6b !important;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 107, 107, 0.1) !important;
+    border-radius: var(--border-radius) !important;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    font-weight: 500;
+    margin: 0;
+    animation: shake 0.5s ease-in-out;
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 /* Responsive Design */
