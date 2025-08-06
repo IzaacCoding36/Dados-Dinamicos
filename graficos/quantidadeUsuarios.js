@@ -34,6 +34,7 @@ async function quantidadeUsuariosPorRede() {
         const layout = {
             plot_bgcolor: getCSS('--bg-color'),
             paper_bgcolor: getCSS('--bg-color'),
+            autosize: true,
             title: {
                 text: 'Redes sociais com mais usuários no mundo',
                 x: 0,
@@ -51,7 +52,8 @@ async function quantidadeUsuariosPorRede() {
                         color: getCSS('--secondary-color')
                     }
                 },
-                gridcolor: 'rgba(99, 240, 84, 0.1)'
+                gridcolor: 'rgba(99, 240, 84, 0.1)',
+                tickangle: -45
             },
             yaxis: {
                 tickfont: tickConfig,
@@ -62,6 +64,12 @@ async function quantidadeUsuariosPorRede() {
                     }
                 },
                 gridcolor: 'rgba(99, 240, 84, 0.1)'
+            },
+            margin: {
+                l: 60,
+                r: 40,
+                t: 80,
+                b: 100
             },
             hoverlabel: {
                 bgcolor: getCSS('--extra-color'),

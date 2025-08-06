@@ -14,12 +14,29 @@ function criarGrafico(data, layout) {
     grafico.setAttribute('aria-label', 'Gráfico interativo')
     grafico.setAttribute('role', 'img')
     document.getElementById('graficos-container').appendChild(grafico)
+    
     const config = {
         responsive: true,
         displayModeBar: false,
-        locale: 'pt-br'
+        locale: 'pt-br',
+        modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
+        displaylogo: false,
+        autosizable: true
     }
-    Plotly.newPlot(grafico, data, layout, config)
+    
+    // Ensure responsive layout
+    const enhancedLayout = {
+        ...layout,
+        autosize: true,
+        responsive: true
+    }
+    
+    Plotly.newPlot(grafico, data, enhancedLayout, config)
+    
+    // Add resize listener for better responsiveness
+    window.addEventListener('resize', () => {
+        Plotly.Plots.resize(grafico)
+    })
 }
 
 function incluirTexto(texto) {

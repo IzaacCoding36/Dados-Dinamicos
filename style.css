@@ -157,6 +157,10 @@ main {
     box-shadow: var(--shadow);
     transition: var(--transition);
     border: 1px solid rgba(99, 240, 84, 0.1);
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+    overflow: hidden;
 }
 
 .grafico:hover {
@@ -303,6 +307,13 @@ footer a:hover {
     .grafico {
         margin: 2rem 0;
         padding: 0.5rem;
+        min-height: 300px;
+    }
+    
+    /* Ensure charts scale properly on mobile */
+    .js-plotly-plot {
+        width: 100% !important;
+        height: auto !important;
     }
 }
 
@@ -318,6 +329,22 @@ footer a:hover {
     .graficos-container__texto {
         padding: 1rem;
         font-size: 1rem;
+    }
+    
+    .grafico {
+        margin: 1.5rem 0;
+        padding: 0.3rem;
+        min-height: 250px;
+    }
+    
+    /* Adjust chart text size on very small screens */
+    .js-plotly-plot .gtitle {
+        font-size: 18px !important;
+    }
+    
+    .js-plotly-plot .xtick text,
+    .js-plotly-plot .ytick text {
+        font-size: 10px !important;
     }
 }
 

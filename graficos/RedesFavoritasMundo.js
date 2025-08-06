@@ -34,7 +34,7 @@ async function redesFavoritasMundo() {
         const layout = {
             plot_bgcolor: getCSS('--bg-color'),
             paper_bgcolor: getCSS('--bg-color'),
-            height: 700,
+            autosize: true,
             title: {
                 text: 'Redes sociais que os usuários mais gostam',
                 x: 0,
@@ -48,7 +48,17 @@ async function redesFavoritasMundo() {
                 font: {
                     color: getCSS('--primary-color'),
                     size: 16
-                }
+                },
+                orientation: 'h',
+                x: 0.5,
+                xanchor: 'center',
+                y: -0.1
+            },
+            margin: {
+                l: 40,
+                r: 40,
+                t: 80,
+                b: 80
             },
             hoverlabel: {
                 bgcolor: getCSS('--extra-color'),
