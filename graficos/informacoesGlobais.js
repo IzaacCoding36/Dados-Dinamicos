@@ -1,20 +1,36 @@
+import { mostrarCarregamento, removerCarregamento, mostrarErro } from "./common.js"
+
 const url = 'https://raw.githubusercontent.com/IzaacCoding36/api/main/dados-globais.json'
 
 async function vizualizarInformacoesGlobais() {
-    const res = await fetch(url)
-    const dados = await res.json()
-    const pessoasConectadas = (dados.total_pessoas_conectadas / 1e9)
-    const pessoasNoMundo = (dados.total_pessoas_mundo / 1e9)
-    const horas = parseInt(dados.tempo_medio)
-    const minutos = Math.round((dados.tempo_medio - horas) * 100)
-    const porcentagemConectada = ((pessoasConectadas / pessoasNoMundo ) * 100).toFixed(2)
+    const loading = mostrarCarregamento()
+    
+    try {
+        const res = await fetch(url)
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${res.statusText}`)
+        }
+        
+        const dados = await res.json()
+        const pessoasConectadas = (dados.total_pessoas_conectadas / 1e9)
+        const pessoasNoMundo = (dados.total_pessoas_mundo / 1e9)
+        const horas = parseInt(dados.tempo_medio)
+        const minutos = Math.round((dados.tempo_medio - horas) * 100)
+        const porcentagemConectada = ((pessoasConectadas / pessoasNoMundo ) * 100).toFixed(2)
 
-    const paragrafo = document.createElement('p')
-    paragrafo.classList.add('graficos-container__texto')
-    paragrafo.innerHTML = `Atualmente o mundo tem <span>${pessoasNoMundo} bilhões</span> de pessoas e aproximadamente <span>${pessoasConectadas} bilhões</span> estão conectadas em alguma rede social, passando em média <span>${horas} horas</span> e <span>${minutos} minutos</span> conectadas em redes sociais.<br>Isso significa que aproximadamente <span>${porcentagemConectada}%</span> de pessoas estão conectadas em mídias digitais.`
+        const paragrafo = document.createElement('p')
+        paragrafo.classList.add('graficos-container__texto')
+        paragrafo.innerHTML = `Atualmente o mundo tem <span>${pessoasNoMundo} bilhões</span> de pessoas e aproximadamente <span>${pessoasConectadas} bilhões</span> estão conectadas em alguma rede social, passando em média <span>${horas} horas</span> e <span>${minutos} minutos</span> conectadas em redes sociais.<br>Isso significa que aproximadamente <span>${porcentagemConectada}%</span> de pessoas estão conectadas em mídias digitais.`
 
-    const container = document.getElementById('graficos-container')
-    container.appendChild(paragrafo)
+        const container = document.getElementById('graficos-container')
+        container.appendChild(paragrafo)
+        
+        removerCarregamento(loading)
+    } catch (error) {
+        console.error('Erro ao carregar informações globais:', error)
+        removerCarregamento(loading)
+        mostrarErro('Não foi possível carregar as informações globais.')
+    }
 }
 
 vizualizarInformacoesGlobais()
